@@ -51,7 +51,7 @@ Output is emitted to `dist/`.
 ## State Management Integration
 
 The component integrates with a custom context-based state management system using useSyncExternalStore hook.
-You can see more detail about the state management inside `context.provider.js` file from `src/providers/`.
+You can see more detail about the state management inside `context.provider.ts` file from `src/providers/`.
 
 ```tsx
 // global.store.ts
