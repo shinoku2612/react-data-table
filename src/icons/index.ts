@@ -1,0 +1,10 @@
+export { ReactComponent as IconRemove } from "./svg/icon-remove.svg";
+export { ReactComponent as IconCheckOnly } from "./svg/icon-check-only.svg";
+export { ReactComponent as IconArrowDown } from "./svg/icon-arrow-down.svg";
+export { ReactComponent as IconClose } from "./svg/icon-close.svg";
+export { ReactComponent as IconSearch } from "./svg/icon-search.svg";
+export { ReactComponent as IconAllInbox } from "./svg/icon-all-inbox.svg";
+export { ReactComponent as IconTune } from "./svg/icon-tune.svg";
+export { ReactComponent as IconSort } from "./svg/icon-sort.svg";
+export { ReactComponent as IconSortDown } from "./svg/icon-sort-down.svg";
+export { ReactComponent as IconSortUp } from "./svg/icon-sort-up.svg";
