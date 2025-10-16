@@ -49,7 +49,7 @@ const App = () => {
 
     // [RENDERS]
     return (
-        <div className="container p-2.5">
+        <div className="p-2.5">
             <VirtualizedTable<User>
                 columns={userColumns}
                 queryKey={["users"]}
