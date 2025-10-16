@@ -723,7 +723,7 @@ export function VirtualizedTable<
                     <tbody
                         style={{
                             display: "grid",
-                            height: pxToRem(rowVirtualizer.getTotalSize()),
+                            height: rowVirtualizer.getTotalSize(),
                             position: "relative",
                         }}
                         role="rowgroup"
