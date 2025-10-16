@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@layer base {
+    html {
+        font-size: calc(100% * var(--scale, 1));
+        box-sizing: border-box;
+        overscroll-behavior: auto;
+    }
+    * {
+        font-family: sans-serif;
+        font-size: inherit;
+        color: inherit;
+        line-height: 125%;
+        box-sizing: inherit;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-size: var(--text-app-base, 0.75rem);
+        color: var(--color-primary-foreground, #000);
+        overscroll-behavior: auto;
+        overflow: hidden;
+    }
+}
+
+@theme inline {
+    --color-table-head-background: black;
+    --color-table-head-foreground: #ffffff;
+    --color-table-selection-checkbox: #26c6da;
+    --color-table-border: #000000;
+    --color-table-row-even: #fff;
+    --color-table-row-odd: #eee;
+    --color-checkbox-unchecked: #fff;
+    --color-checkbox-checked: #488fd6;
+    --color-chip-neutral-background: gray;
+    --color-chip-neutral-foreground: gray;
+    --color-chip-info-background: #26c6da;
+    --color-chip-info-foreground: #26c6da;
+    --color-chip-success-background: #38e15d;
+    --color-chip-success-foreground: #38e15d;
+    --color-chip-error-background: #fc6d4b;
+    --color-chip-error-foreground: #fc6d4b;
+    --color-chip-warning-background: #fece31;
+    --color-chip-warning-foreground: #fece31;
+}

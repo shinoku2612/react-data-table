@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { VirtualizedTable } from "@/components/ui/table";
+import useViewportScale from "@/hooks/useViewportScale";
+import { fetchData } from "@/services/data.service";
+import { useGlobalStore, userGlobalDispatch } from "@/stores/global.store";
+import type { User } from "@/type/user";
+import type { ColumnDef } from "@tanstack/react-table";
+import { useMemo } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    // [SETUPS]
+    useViewportScale(1280, 0.75, 7.5);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    // [STATES]
+    const columnVisibility = useGlobalStore((store) => store.columnVisibility);
+    const globalDispatch = userGlobalDispatch();
+    const userColumns = useMemo<ColumnDef<User>[]>(
+        () => [
+            { accessorKey: "id", header: "ID", sortingFn: "text", size: 180 },
+            {
+                accessorKey: "bio",
+                header: "Bio",
+                size: 320,
+            },
+            { accessorKey: "name", header: "Name" },
+            { accessorKey: "language", header: "Language" },
+            { accessorKey: "version", header: "Version", size: 100 },
+            {
+                accessorKey: "state",
+                header: "State",
+                cell: () => <span>Los Angeles</span>,
+            },
+            {
+                accessorKey: "createdDate",
+                header: "Created Date",
+                sortingFn: "datetime",
+                cell: () => (
+                    <span className="text-nowrap">
+                        {new Date().toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
+                    </span>
+                ),
+            },
+        ],
+        []
+    );
 
-export default App
+    // [RENDERS]
+    return (
+        <div className="container p-2.5">
+            <VirtualizedTable<User>
+                columns={userColumns}
+                queryKey={["users"]}
+                fetchFn={fetchData}
+                containerHeight={560}
+                initColumnVisibility={columnVisibility}
+                onColumnVisibilityChange={(visibility) => {
+                    globalDispatch(
+                        (store) => (store.columnVisibility = visibility)
+                    );
+                }}
+            />
+        </div>
+    );
+};
+
+export default App;
